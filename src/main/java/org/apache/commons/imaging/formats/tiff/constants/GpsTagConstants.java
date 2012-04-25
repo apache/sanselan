@@ -64,8 +64,8 @@ public interface GpsTagConstants
             "GPS Altitude Ref", 0x0005, 1,
             TiffDirectoryType.EXIF_DIRECTORY_GPS);
 
-    public static final int GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL = 0;
-    public static final int GPS_TAG_GPS_ALTITUDE_REF_VALUE_BELOW_SEA_LEVEL = 1;
+    public static final byte GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL = 0;
+    public static final byte GPS_TAG_GPS_ALTITUDE_REF_VALUE_BELOW_SEA_LEVEL = 1;
     // ************************************************************
     public static final TagInfoRational GPS_TAG_GPS_ALTITUDE = new TagInfoRational(
             "GPS Altitude", 0x0006, 1,
