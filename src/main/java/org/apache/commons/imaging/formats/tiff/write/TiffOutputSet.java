@@ -155,10 +155,10 @@ public final class TiffOutputSet implements TiffConstants
         latitude = Math.abs(latitude);
 
         gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF);
-        gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_DEST_LONGITUDE_REF, longitudeRef);
+        gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF, longitudeRef);
 
         gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF);
-        gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_DEST_LATITUDE_REF, latitudeRef);
+        gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF, latitudeRef);
 
 
         {
@@ -172,7 +172,7 @@ public final class TiffOutputSet implements TiffConstants
             double longitudeSeconds = value;
 
             gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_LONGITUDE);
-            gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_DEST_LONGITUDE,
+            gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_LONGITUDE,
                     RationalNumberUtilities.getRationalNumber(longitudeDegrees),
                     RationalNumberUtilities.getRationalNumber(longitudeMinutes),
                     RationalNumberUtilities.getRationalNumber(longitudeSeconds));
@@ -195,6 +195,27 @@ public final class TiffOutputSet implements TiffConstants
                     RationalNumberUtilities.getRationalNumber(latitudeSeconds));
         }
 
+    }
+
+    /**
+     * A convenience method to update GPS altitude values in EXIF metadata.
+     * @param altitude Altitude
+     * @throws ImageWriteException
+     */
+    public void setGPSAltitude(double altitude) throws ImageWriteException {
+        TiffOutputDirectory gpsDirectory = getOrCreateGPSDirectory();
+
+        byte altitudeRef = altitude < 0
+                ? GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_BELOW_SEA_LEVEL
+                : GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL;
+        altitude = Math.abs(altitude);
+
+        gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF);
+        gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF, altitudeRef);
+
+        gpsDirectory.removeField(GpsTagConstants.GPS_TAG_GPS_ALTITUDE);
+        gpsDirectory.add(GpsTagConstants.GPS_TAG_GPS_ALTITUDE,
+                RationalNumberUtilities.getRationalNumber(altitude));
     }
 
     public void removeField(TagInfo tagInfo)
