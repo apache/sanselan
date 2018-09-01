@@ -362,7 +362,7 @@ public class PngWriter implements PngConstants
     }
 
     /*
-     * between two chunk types indicates alternatives. Table 5.3 — Chunk
+     * between two chunk types indicates alternatives. Table 5.3  Chunk
      * ordering rules Critical chunks (shall appear in this order, except PLTE
      * is optional) Chunk name Multiple allowed Ordering constraints IHDR No
      * Shall be first PLTE No Before first IDAT IDAT Yes Multiple IDAT chunks

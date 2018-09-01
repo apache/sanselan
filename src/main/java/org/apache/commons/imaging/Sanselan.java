@@ -50,7 +50,7 @@ import org.apache.commons.imaging.util.Debug;
  * See the source of the SampleUsage class and other classes in the
  * org.apache.commons.sanselan.examples package for examples.
  *
- * @see org.apache.commons.sanselan.examples.SampleUsage
+ * @see org.apache.commons.imaging.examples.SampleUsage
  */
 public abstract class Sanselan implements SanselanConstants {
 

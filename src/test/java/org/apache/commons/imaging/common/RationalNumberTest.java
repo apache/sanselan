@@ -17,13 +17,11 @@
 
 package org.apache.commons.imaging.common;
 
+import org.apache.commons.imaging.SanselanTest;
+import org.apache.commons.imaging.util.Debug;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
-import org.apache.commons.imaging.SanselanTest;
-import org.apache.commons.imaging.common.RationalNumber;
-import org.apache.commons.imaging.common.RationalNumberUtilities;
-import org.apache.commons.imaging.util.Debug;
 
 public class RationalNumberTest extends SanselanTest
 {

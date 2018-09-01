@@ -36,12 +36,7 @@ public abstract class GifBaseTest extends SanselanTest
         return format == ImageFormat.IMAGE_FORMAT_GIF;
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isGif(file);
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = GifBaseTest::isGif;
 
     protected List getGifImages() throws IOException, ImageReadException
     {

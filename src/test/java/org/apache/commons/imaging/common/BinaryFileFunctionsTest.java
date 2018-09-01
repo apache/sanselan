@@ -16,7 +16,6 @@
 package org.apache.commons.imaging.common;
 
 import org.apache.commons.imaging.SanselanTest;
-import org.apache.commons.imaging.common.BinaryFileFunctions;
 
 public class BinaryFileFunctionsTest extends SanselanTest {
     // Work around that pesky "protected"...

@@ -35,12 +35,7 @@ public abstract class IcnsBaseTest extends SanselanTest
         return format == ImageFormat.IMAGE_FORMAT_ICNS;
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isIcns(file);
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = IcnsBaseTest::isIcns;
 
     protected List getIcnsImages() throws IOException, ImageReadException
     {

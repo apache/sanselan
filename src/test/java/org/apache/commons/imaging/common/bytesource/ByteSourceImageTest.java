@@ -35,14 +35,11 @@ import org.apache.commons.imaging.Sanselan;
 import org.apache.commons.imaging.util.Debug;
 import org.apache.commons.imaging.util.IoUtils;
 
-public class ByteSourceImageTest extends ByteSourceTest
-{
+public class ByteSourceImageTest extends ByteSourceTest {
 
-    public void test() throws Exception
-    {
+    public void test() throws Exception {
         List imageFiles = getTestImages();
-        for (int i = 0; i < imageFiles.size(); i++)
-        {
+        for (int i = 0; i < imageFiles.size(); i++) {
             if (i % 1 == 0)
                 Debug.purgeMemory();
 
@@ -62,8 +59,7 @@ public class ByteSourceImageTest extends ByteSourceTest
                     || imageFile.getName().toLowerCase().endsWith(".psd")
                     || imageFile.getName().toLowerCase().endsWith(".wbmp")
                     || imageFile.getName().toLowerCase().endsWith(".xbm")
-                    || imageFile.getName().toLowerCase().endsWith(".xpm"))
-            {
+                    || imageFile.getName().toLowerCase().endsWith(".xpm")) {
                 // these formats can't be parsed without a filename hint.
                 // they have ambiguous "magic number" signatures.
                 continue;
@@ -73,7 +69,7 @@ public class ByteSourceImageTest extends ByteSourceTest
 
             if (imageFile.getName().toLowerCase().endsWith(".png")
                     && imageFile.getParentFile().getName().equalsIgnoreCase(
-                            "pngsuite")
+                    "pngsuite")
                     && imageFile.getName().toLowerCase().startsWith("x"))
                 continue;
 
@@ -87,15 +83,13 @@ public class ByteSourceImageTest extends ByteSourceTest
 
             ImageFormat imageFormat = Sanselan.guessFormat(imageFile);
             if (ImageFormat.IMAGE_FORMAT_JPEG != imageFormat
-             && ImageFormat.IMAGE_FORMAT_UNKNOWN != imageFormat)
-            {
+                    && ImageFormat.IMAGE_FORMAT_UNKNOWN != imageFormat) {
                 checkGetBufferedImage(imageFile, imageFileBytes);
             }
         }
     }
 
-    public void checkGetBufferedImage(File file, byte[] bytes) throws Exception
-    {
+    public void checkGetBufferedImage(File file, byte[] bytes) throws Exception {
         BufferedImage imageFile = Sanselan.getBufferedImage(file);
         assertNotNull(imageFile);
         assertTrue(imageFile.getWidth() > 0);
@@ -110,8 +104,7 @@ public class ByteSourceImageTest extends ByteSourceTest
         assertTrue(imageFileHeight == imageBytes.getHeight());
     }
 
-    public void checkGetImageSize(File imageFile, byte[] imageFileBytes) throws Exception
-    {
+    public void checkGetImageSize(File imageFile, byte[] imageFileBytes) throws Exception {
         Dimension imageSizeFile = Sanselan.getImageSize(imageFile);
         assertNotNull(imageSizeFile);
         assertTrue(imageSizeFile.width > 0);
@@ -123,24 +116,22 @@ public class ByteSourceImageTest extends ByteSourceTest
         assertTrue(imageSizeFile.height == imageSizeBytes.height);
     }
 
-    public void checkGuessFormat(File imageFile, byte[] imageFileBytes) throws Exception
-    {
+    public void checkGuessFormat(File imageFile, byte[] imageFileBytes) throws Exception {
         // check guessFormat()
         ImageFormat imageFormatFile = Sanselan.guessFormat(imageFile);
         assertNotNull(imageFormatFile);
-        assertTrue(imageFormatFile != ImageFormat.IMAGE_FORMAT_UNKNOWN);
+        assertNotSame(imageFormatFile, ImageFormat.IMAGE_FORMAT_UNKNOWN);
         // Debug.debug("imageFormatFile", imageFormatFile);
 
         ImageFormat imageFormatBytes = Sanselan.guessFormat(imageFileBytes);
         assertNotNull(imageFormatBytes);
-        assertTrue(imageFormatBytes != ImageFormat.IMAGE_FORMAT_UNKNOWN);
+        assertNotSame(imageFormatBytes, ImageFormat.IMAGE_FORMAT_UNKNOWN);
         // Debug.debug("imageFormatBytes", imageFormatBytes);
 
-        assertTrue(imageFormatBytes == imageFormatFile);
+        assertSame(imageFormatBytes, imageFormatFile);
     }
 
-    public void checkGetICCProfileBytes(File imageFile, byte[] imageFileBytes)  throws Exception
-    {
+    public void checkGetICCProfileBytes(File imageFile, byte[] imageFileBytes) throws Exception {
         // check guessFormat()
         byte iccBytesFile[] = Sanselan.getICCProfileBytes(imageFile);
 
@@ -156,16 +147,13 @@ public class ByteSourceImageTest extends ByteSourceTest
 
     public void checkGetImageInfo(File imageFile, byte[] imageFileBytes)
             throws IOException, ImageReadException, IllegalAccessException,
-            IllegalArgumentException, InvocationTargetException
-    {
-        Map params = new HashMap();
+            IllegalArgumentException, InvocationTargetException {
+        Map<String, Boolean> params = new HashMap<>();
         boolean ignoreImageData = isPhilHarveyTestImage(imageFile);
         ImageFormat imageFormat = Sanselan.guessFormat(imageFile);
         if (imageFormat.equals(ImageFormat.IMAGE_FORMAT_TIFF)
                 || imageFormat.equals(ImageFormat.IMAGE_FORMAT_JPEG))
-            params
-                    .put(PARAM_KEY_READ_THUMBNAILS, new Boolean(
-                            !ignoreImageData));
+            params.put(PARAM_KEY_READ_THUMBNAILS, !ignoreImageData);
 
         ImageInfo imageInfoFile = Sanselan.getImageInfo(imageFile, params);
 
@@ -176,8 +164,7 @@ public class ByteSourceImageTest extends ByteSourceTest
         assertNotNull(imageInfoBytes);
 
         Method methods[] = ImageInfo.class.getMethods();
-        for (int i = 0; i < methods.length; i++)
-        {
+        for (int i = 0; i < methods.length; i++) {
             Method method = methods[i];
             method.getModifiers();
             if (!Modifier.isPublic(method.getModifiers()))

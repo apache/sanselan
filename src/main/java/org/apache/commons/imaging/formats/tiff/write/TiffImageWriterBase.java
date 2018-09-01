@@ -491,7 +491,7 @@ public abstract class TiffImageWriterBase implements TiffConstants,
     
     private void combineUserExifIntoFinalExif(TiffOutputSet userExif, TiffOutputSet outputSet) throws ImageWriteException {
         List<TiffOutputDirectory> outputDirectories = outputSet.getDirectories();
-        Collections.sort(outputDirectories, TiffOutputDirectory.COMPARATOR);
+        outputDirectories.sort(TiffOutputDirectory.COMPARATOR);
         for (TiffOutputDirectory userDirectory : userExif.getDirectories()) {
             int location = Collections.binarySearch(outputDirectories,
                     userDirectory, TiffOutputDirectory.COMPARATOR);

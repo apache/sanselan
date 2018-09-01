@@ -2,9 +2,9 @@
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- * 
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,22 +22,14 @@ import java.util.List;
 import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.SanselanTest;
 
-public abstract class WbmpBaseTest extends SanselanTest
-{
-    private static boolean isWbmp(File file)
-    {
+public abstract class WbmpBaseTest extends SanselanTest {
+    private static boolean isWbmp(File file) {
         return file.getName().toLowerCase().endsWith(".wbmp");
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isWbmp(file);
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = WbmpBaseTest::isWbmp;
 
-    protected List getWbmpImages() throws IOException, ImageReadException
-    {
+    protected List getWbmpImages() throws IOException, ImageReadException {
         return getTestImages(IMAGE_FILTER);
     }
 }

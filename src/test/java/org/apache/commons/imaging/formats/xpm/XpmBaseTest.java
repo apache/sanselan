@@ -30,12 +30,7 @@ public abstract class XpmBaseTest extends SanselanTest
         return file.getName().toLowerCase().endsWith(".xpm");
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isXpm(file);
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = XpmBaseTest::isXpm;
 
     protected List getXpmImages() throws IOException, ImageReadException
     {

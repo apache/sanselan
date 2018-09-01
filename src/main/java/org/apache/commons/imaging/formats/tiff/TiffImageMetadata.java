@@ -492,7 +492,7 @@ public class TiffImageMetadata extends ImageMetadata
 
     public List<TiffField> getAllFields()
     {
-        List<TiffField> result = new ArrayList<TiffField>();
+        List<TiffField> result = new ArrayList<>();
         List<? extends IImageMetadataItem> directories = getDirectories();
         for (int i = 0; i < directories.size(); i++)
         {
@@ -584,7 +584,7 @@ public class TiffImageMetadata extends ImageMetadata
             // latitude: 8 degrees, 40 minutes, 42.2 seconds S
             // longitude: 115 degrees, 26 minutes, 21.8 seconds E
 
-            StringBuffer result = new StringBuffer();
+            StringBuilder result = new StringBuilder();
             result.append("[GPS. ");
             result.append("Latitude: " + latitudeDegrees.toDisplayString()
                     + " degrees, " + latitudeMinutes.toDisplayString()

@@ -75,7 +75,7 @@ public abstract class TagInfo implements TiffDirectoryConstants, TiffFieldTypeCo
     {
         this.name = name;
         this.tag = tag;
-        this.dataTypes = Collections.unmodifiableList(new ArrayList<FieldType>(dataTypes));
+        this.dataTypes = Collections.unmodifiableList(new ArrayList<>(dataTypes));
         this.length = length;
         this.directoryType = exifDirectory;
         this.isOffset = isOffset;

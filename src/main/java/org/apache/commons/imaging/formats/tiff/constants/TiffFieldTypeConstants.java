@@ -16,92 +16,62 @@
  */
 package org.apache.commons.imaging.formats.tiff.constants;
 
-import java.util.Arrays;
-import java.util.Collections;
+import org.apache.commons.imaging.SanselanConstants;
+import org.apache.commons.imaging.formats.tiff.fieldtypes.*;
+
 import java.util.List;
 
-import org.apache.commons.imaging.SanselanConstants;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldType;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeAscii;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeByte;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeDouble;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeFloat;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeLong;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeRational;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeShort;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeUnknown;
+public interface TiffFieldTypeConstants extends SanselanConstants {
 
-public interface TiffFieldTypeConstants extends SanselanConstants
-{
-
-    public static final FieldTypeByte FIELD_TYPE_BYTE = new FieldTypeByte(1,
+    FieldTypeByte FIELD_TYPE_BYTE = new FieldTypeByte(1,
             "Byte");
 
-    public static final FieldTypeAscii FIELD_TYPE_ASCII = new FieldTypeAscii(2,
+    FieldTypeAscii FIELD_TYPE_ASCII = new FieldTypeAscii(2,
             "ASCII");
 
-    public static final FieldTypeShort FIELD_TYPE_SHORT = new FieldTypeShort(3,
+    FieldTypeShort FIELD_TYPE_SHORT = new FieldTypeShort(3,
             "Short");
 
-    public static final FieldTypeLong FIELD_TYPE_LONG = new FieldTypeLong(4,
+    FieldTypeLong FIELD_TYPE_LONG = new FieldTypeLong(4,
             "Long");
 
-    public static final FieldTypeRational FIELD_TYPE_RATIONAL = new FieldTypeRational(
+    FieldTypeRational FIELD_TYPE_RATIONAL = new FieldTypeRational(
             5, "Rational");
 
-    public static final FieldType FIELD_TYPE_SBYTE = new FieldTypeByte(6,
+    FieldType FIELD_TYPE_SBYTE = new FieldTypeByte(6,
             "SByte");
-    public static final FieldType FIELD_TYPE_UNDEFINED = new FieldTypeByte(7,
+    FieldType FIELD_TYPE_UNDEFINED = new FieldTypeByte(7,
             "Undefined");
-    public static final FieldType FIELD_TYPE_SSHORT = new FieldTypeShort(8,
+    FieldType FIELD_TYPE_SSHORT = new FieldTypeShort(8,
             "SShort");
 
-    public static final FieldType FIELD_TYPE_SLONG = new FieldTypeLong(9,
+    FieldType FIELD_TYPE_SLONG = new FieldTypeLong(9,
             "SLong");
 
-    public static final FieldType FIELD_TYPE_SRATIONAL = new FieldTypeRational(
+    FieldType FIELD_TYPE_SRATIONAL = new FieldTypeRational(
             10, "SRational");
 
-    public static final FieldType FIELD_TYPE_FLOAT = new FieldTypeFloat();
+    FieldType FIELD_TYPE_FLOAT = new FieldTypeFloat();
 
-    public static final FieldType FIELD_TYPE_DOUBLE = new FieldTypeDouble();
+    FieldType FIELD_TYPE_DOUBLE = new FieldTypeDouble();
 
-    public static final FieldType FIELD_TYPE_UNKNOWN = new FieldTypeUnknown();
+    FieldType FIELD_TYPE_UNKNOWN = new FieldTypeUnknown();
 
-    public static final List<FieldType> FIELD_TYPES =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_BYTE, FIELD_TYPE_ASCII, FIELD_TYPE_SHORT,
+    List<FieldType> FIELD_TYPES =
+            List.of(FIELD_TYPE_BYTE, FIELD_TYPE_ASCII, FIELD_TYPE_SHORT,
                     FIELD_TYPE_LONG, FIELD_TYPE_RATIONAL, FIELD_TYPE_SBYTE,
                     FIELD_TYPE_UNDEFINED, FIELD_TYPE_SSHORT, FIELD_TYPE_SLONG,
-                    FIELD_TYPE_SRATIONAL, FIELD_TYPE_FLOAT, FIELD_TYPE_DOUBLE));
+                    FIELD_TYPE_SRATIONAL, FIELD_TYPE_FLOAT, FIELD_TYPE_DOUBLE);
 
-    public static final List<FieldType> FIELD_TYPE_ANY = FIELD_TYPES;
+    List<FieldType> FIELD_TYPE_ANY = FIELD_TYPES;
 
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_SHORT_OR_LONG =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_SHORT, FIELD_TYPE_LONG));
-    
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_SHORT_OR_RATIONAL =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_SHORT, FIELD_TYPE_RATIONAL));
-    
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_SHORT_OR_LONG_OR_RATIONAL =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_SHORT, FIELD_TYPE_LONG, FIELD_TYPE_RATIONAL));
-    
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_LONG_OR_SHORT =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_SHORT, FIELD_TYPE_LONG));
-    
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_BYTE_OR_SHORT =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_SHORT, FIELD_TYPE_BYTE));
-    
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_ASCII_OR_RATIONAL =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_ASCII, FIELD_TYPE_RATIONAL));
-    
-    public static final List<FieldType> FIELD_TYPE_DESCRIPTION_ASCII_OR_BYTE =
-            Collections.unmodifiableList(Arrays.asList(
-                    FIELD_TYPE_ASCII, FIELD_TYPE_BYTE));
+    List<FieldType> FIELD_TYPE_DESCRIPTION_SHORT_OR_LONG = List.of(FIELD_TYPE_SHORT, FIELD_TYPE_LONG);
+
+    List<FieldType> FIELD_TYPE_DESCRIPTION_SHORT_OR_RATIONAL = List.of(FIELD_TYPE_SHORT, FIELD_TYPE_RATIONAL);
+
+    List<FieldType> FIELD_TYPE_DESCRIPTION_BYTE_OR_SHORT = List.of(FIELD_TYPE_SHORT, FIELD_TYPE_BYTE);
+
+    List<FieldType> FIELD_TYPE_DESCRIPTION_ASCII_OR_RATIONAL = List.of(FIELD_TYPE_ASCII, FIELD_TYPE_RATIONAL);
+
+    List<FieldType> FIELD_TYPE_DESCRIPTION_ASCII_OR_BYTE = List.of(FIELD_TYPE_ASCII, FIELD_TYPE_BYTE);
 }

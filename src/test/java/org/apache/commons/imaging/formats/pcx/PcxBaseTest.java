@@ -32,12 +32,7 @@ public abstract class PcxBaseTest extends SanselanTest
         return file.getName().toLowerCase().endsWith(".pcx");
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isPcx(file);
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = PcxBaseTest::isPcx;
 
     protected List getPcxImages() throws IOException, ImageReadException
     {

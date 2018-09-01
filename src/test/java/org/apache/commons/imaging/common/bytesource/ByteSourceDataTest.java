@@ -17,16 +17,9 @@
 
 package org.apache.commons.imaging.common.bytesource;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.commons.imaging.common.bytesource.ByteSource;
-import org.apache.commons.imaging.common.bytesource.ByteSourceFile;
-import org.apache.commons.imaging.common.bytesource.ByteSourceInputStream;
 import org.apache.commons.imaging.util.IoUtils;
+
+import java.io.*;
 
 public class ByteSourceDataTest extends ByteSourceTest
 {

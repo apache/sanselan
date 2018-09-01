@@ -18,17 +18,18 @@
 package org.apache.commons.imaging;
 
 import java.io.File;
+
 import org.apache.commons.io.FilenameUtils;
 
 public interface SanselanTestConstants {
 
-    static final File PHIL_HARVEY_TEST_IMAGE_FOLDER = new File(
+    File PHIL_HARVEY_TEST_IMAGE_FOLDER = new File(
             FilenameUtils.separatorsToSystem("src\\test\\data\\images\\exif\\philHarvey\\"));
 
-    static final File SOURCE_FOLDER = new File("src");
-    static final File TEST_SOURCE_FOLDER = new File(SOURCE_FOLDER, "test");
-    static final File TEST_DATA_SOURCE_FOLDER = new File(TEST_SOURCE_FOLDER,
+    File SOURCE_FOLDER = new File("src");
+    File TEST_SOURCE_FOLDER = new File(SOURCE_FOLDER, "test");
+    File TEST_DATA_SOURCE_FOLDER = new File(TEST_SOURCE_FOLDER,
             "data");
-    static final File TEST_IMAGE_FOLDER = new File(TEST_DATA_SOURCE_FOLDER,
+    File TEST_IMAGE_FOLDER = new File(TEST_DATA_SOURCE_FOLDER,
             "images");
 }

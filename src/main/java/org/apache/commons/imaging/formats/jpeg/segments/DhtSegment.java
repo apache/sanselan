@@ -23,7 +23,7 @@ import java.util.List;
 
 public class DhtSegment extends Segment
 {
-    public final List<HuffmanTable> huffmanTables = new ArrayList<HuffmanTable>();
+    public final List<HuffmanTable> huffmanTables = new ArrayList<>();
 
     public static class HuffmanTable
     {

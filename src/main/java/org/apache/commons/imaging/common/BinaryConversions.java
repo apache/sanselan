@@ -31,11 +31,11 @@ public class BinaryConversions implements BinaryConstants {
             short value = values[offset + i];
             int start = i * 2;
             if (byteOrder == BYTE_ORDER_MOTOROLA) {
-                result[start + 0] = (byte) (value >> 8);
-                result[start + 1] = (byte) (value >> 0);
+                result[start] = (byte) (value >> 8);
+                result[start + 1] = (byte) value;
             } else {
                 result[start + 1] = (byte) (value >> 8);
-                result[start + 0] = (byte) (value >> 0);
+                result[start] = (byte) value;
             }
         }
         return result;
@@ -55,15 +55,15 @@ public class BinaryConversions implements BinaryConstants {
             int value = values[offset + i];
             int start = i * 4;
             if (byteOrder == BYTE_ORDER_MOTOROLA) {
-                result[start + 0] = (byte) (value >> 24);
+                result[start] = (byte) (value >> 24);
                 result[start + 1] = (byte) (value >> 16);
                 result[start + 2] = (byte) (value >> 8);
-                result[start + 3] = (byte) (value >> 0);
+                result[start + 3] = (byte) value;
             } else {
                 result[start + 3] = (byte) (value >> 24);
                 result[start + 2] = (byte) (value >> 16);
                 result[start + 1] = (byte) (value >> 8);
-                result[start + 0] = (byte) (value >> 0);
+                result[start] = (byte) value;
             }
         }
         return result;
@@ -84,15 +84,15 @@ public class BinaryConversions implements BinaryConstants {
             int bits = Float.floatToRawIntBits(value);
             int start = i * 4;
             if (byteOrder == BYTE_ORDER_INTEL) {
-                result[start + 0] = (byte) (0xff & (bits >> 0));
+                result[start] = (byte) (0xff & bits);
                 result[start + 1] = (byte) (0xff & (bits >> 8));
                 result[start + 2] = (byte) (0xff & (bits >> 16));
                 result[start + 3] = (byte) (0xff & (bits >> 24));
             } else {
-                result[start + 3] = (byte) (0xff & (bits >> 0));
+                result[start + 3] = (byte) (0xff & bits);
                 result[start + 2] = (byte) (0xff & (bits >> 8));
                 result[start + 1] = (byte) (0xff & (bits >> 16));
-                result[start + 0] = (byte) (0xff & (bits >> 24));
+                result[start] = (byte) (0xff & (bits >> 24));
             }
         }
         return result;
@@ -113,7 +113,7 @@ public class BinaryConversions implements BinaryConstants {
             long bits = Double.doubleToRawLongBits(value);
             int start = i * 8;
             if (byteOrder == BYTE_ORDER_INTEL) {
-                result[start + 0] = (byte) (0xff & (bits >> 0));
+                result[start] = (byte) (0xff & bits);
                 result[start + 1] = (byte) (0xff & (bits >> 8));
                 result[start + 2] = (byte) (0xff & (bits >> 16));
                 result[start + 3] = (byte) (0xff & (bits >> 24));
@@ -122,14 +122,14 @@ public class BinaryConversions implements BinaryConstants {
                 result[start + 6] = (byte) (0xff & (bits >> 48));
                 result[start + 7] = (byte) (0xff & (bits >> 56));
             } else {
-                result[start + 7] = (byte) (0xff & (bits >> 0));
+                result[start + 7] = (byte) (0xff & bits);
                 result[start + 6] = (byte) (0xff & (bits >> 8));
                 result[start + 5] = (byte) (0xff & (bits >> 16));
                 result[start + 4] = (byte) (0xff & (bits >> 24));
                 result[start + 3] = (byte) (0xff & (bits >> 32));
                 result[start + 2] = (byte) (0xff & (bits >> 40));
                 result[start + 1] = (byte) (0xff & (bits >> 48));
-                result[start + 0] = (byte) (0xff & (bits >> 56));
+                result[start] = (byte) (0xff & (bits >> 56));
             }
         }
         return result;
@@ -149,23 +149,23 @@ public class BinaryConversions implements BinaryConstants {
             RationalNumber value = values[offset + i];
             int start = i * 8;
             if (byteOrder == BYTE_ORDER_MOTOROLA) {
-                result[start + 0] = (byte) (value.numerator >> 24);
+                result[start] = (byte) (value.numerator >> 24);
                 result[start + 1] = (byte) (value.numerator >> 16);
                 result[start + 2] = (byte) (value.numerator >> 8);
-                result[start + 3] = (byte) (value.numerator >> 0);
+                result[start + 3] = (byte) value.numerator;
                 result[start + 4] = (byte) (value.divisor >> 24);
                 result[start + 5] = (byte) (value.divisor >> 16);
                 result[start + 6] = (byte) (value.divisor >> 8);
-                result[start + 7] = (byte) (value.divisor >> 0);
+                result[start + 7] = (byte) value.divisor;
             } else {
                 result[start + 3] = (byte) (value.numerator >> 24);
                 result[start + 2] = (byte) (value.numerator >> 16);
                 result[start + 1] = (byte) (value.numerator >> 8);
-                result[start + 0] = (byte) (value.numerator >> 0);
+                result[start] = (byte) value.numerator;
                 result[start + 7] = (byte) (value.divisor >> 24);
                 result[start + 6] = (byte) (value.divisor >> 16);
                 result[start + 5] = (byte) (value.divisor >> 8);
-                result[start + 4] = (byte) (value.divisor >> 0);
+                result[start + 4] = (byte) value.divisor;
             }
         }
         return result;
@@ -176,7 +176,7 @@ public class BinaryConversions implements BinaryConstants {
     }
     
     public static short convertToShort(byte[] bytes, int offset, int byteOrder) {
-        int byte0 = 0xff & bytes[offset + 0];
+        int byte0 = 0xff & bytes[offset];
         int byte1 = 0xff & bytes[offset + 1];
         if (byteOrder == BYTE_ORDER_MOTOROLA) {
             return (short) ((byte0 << 8) | byte1);
@@ -206,7 +206,7 @@ public class BinaryConversions implements BinaryConstants {
     }
     
     public static int convertToInt(byte[] bytes, int offset, int byteOrder) {
-        int byte0 = 0xff & bytes[offset + 0];
+        int byte0 = 0xff & bytes[offset];
         int byte1 = 0xff & bytes[offset + 1];
         int byte2 = 0xff & bytes[offset + 2];
         int byte3 = 0xff & bytes[offset + 3];
@@ -240,17 +240,17 @@ public class BinaryConversions implements BinaryConstants {
     }
     
     public static float convertToFloat(byte[] bytes, int offset, int byteOrder) {
-        int byte0 = 0xff & bytes[offset + 0];
+        int byte0 = 0xff & bytes[offset];
         int byte1 = 0xff & bytes[offset + 1];
         int byte2 = 0xff & bytes[offset + 2];
         int byte3 = 0xff & bytes[offset + 3];
         int bits;
         if (byteOrder == BYTE_ORDER_MOTOROLA) {
             bits = (byte0 << 24) | (byte1 << 16) |
-                    (byte2 << 8) | (byte3 << 0);
+                    (byte2 << 8) | byte3;
         } else {
             bits = (byte3 << 24) | (byte2 << 16) |
-                    (byte1 << 8) | (byte0 << 0);
+                    (byte1 << 8) | byte0;
         }
         return Float.intBitsToFloat(bits);
     }
@@ -276,7 +276,7 @@ public class BinaryConversions implements BinaryConstants {
     }
     
     public static double convertToDouble(byte[] bytes, int offset, int byteOrder) {
-        long byte0 = 0xffL & bytes[offset + 0];
+        long byte0 = 0xffL & bytes[offset];
         long byte1 = 0xffL & bytes[offset + 1];
         long byte2 = 0xffL & bytes[offset + 2];
         long byte3 = 0xffL & bytes[offset + 3];
@@ -289,12 +289,12 @@ public class BinaryConversions implements BinaryConstants {
             bits = (byte0 << 56) | (byte1 << 48) |
                     (byte2 << 40) | (byte3 << 32) |
                     (byte4 << 24) | (byte5 << 16) |
-                    (byte6 << 8) | (byte7 << 0);
+                    (byte6 << 8) | byte7;
         } else {
             bits = (byte7 << 56) | (byte6 << 48) |
                     (byte5 << 40) | (byte4 << 32) |
                     (byte3 << 24) | (byte2 << 16) |
-                    (byte1 << 8) | (byte0 << 0);
+                    (byte1 << 8) | byte0;
         }
         return Double.longBitsToDouble(bits);
     }
@@ -320,7 +320,7 @@ public class BinaryConversions implements BinaryConstants {
     }
     
     public static RationalNumber convertToRational(byte[] bytes, int offset, int byteOrder) {
-        int byte0 = 0xff & bytes[offset + 0];
+        int byte0 = 0xff & bytes[offset];
         int byte1 = 0xff & bytes[offset + 1];
         int byte2 = 0xff & bytes[offset + 2];
         int byte3 = 0xff & bytes[offset + 3];

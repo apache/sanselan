@@ -403,15 +403,10 @@ public class IptcParser extends BinaryFileParser implements IptcConstants
             bos.write2Bytes(2); // record version value
 
             // make a copy of the list.
-            elements = new ArrayList<IptcRecord>(elements);
+            elements = new ArrayList<>(elements);
 
             // sort the list. Records must be in numerical order.
-            Comparator<IptcRecord> comparator = new Comparator<IptcRecord>() {
-                public int compare(IptcRecord e1, IptcRecord e2)
-                {
-                    return e2.iptcType.getType() - e1.iptcType.getType();
-                }
-            };
+            Comparator<IptcRecord> comparator = (e1, e2) -> e2.iptcType.getType() - e1.iptcType.getType();
             Collections.sort(elements, comparator);
             // TODO: make sure order right
 

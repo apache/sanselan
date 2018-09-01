@@ -37,7 +37,7 @@ import org.apache.commons.imaging.common.bytesource.ByteSourceInputStream;
  * <p>
  * See the source of the XmpXmlUpdateExample class for example usage.
  *
- * @see org.apache.commons.sanselan.examples.WriteXmpXmlExample
+ * @see org.apache.commons.imaging.examples.WriteXmpXmlExample
  */
 public class JpegXmpRewriter extends JpegRewriter
 {

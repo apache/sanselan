@@ -1,6 +1,5 @@
-=========================================================================
-Welcome to Apache Commons Sanselan  <http://commons.apache.org/sanselan/>
-=========================================================================
+== Welcome to Apache Commons Sanselan  http://commons.apache.org/sanselan/
+
 
 License (see also LICENSE)
 ==============================
@@ -21,13 +20,13 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+==============================
+
+== Getting Started
 
 
-Getting Started
-===============
+=== Mailing Lists
 
-Mailing Lists
--------------
 
 To get involved with the Apache Commons Sanselan project, start by
 having a look at our website (link at top of page) and join our mailing
@@ -43,8 +42,8 @@ and the dev mailing list archives can be found at
 
 Please prefix the subject line of any messages with [sanselan].
 
-Downloading
------------
+=== Downloading
+
 
 The Commons Sanselan source code is available via Subversion at
 
@@ -76,8 +75,23 @@ For more instructions, please see the documentation at:
 
    http://commons.apache.org/building.html
 
-Credits
-=======
+=== Credits
 
-See http://commons.apache.org/sanselan/team-list.html for the list of 
-Sanselan committers and main contributors.
+Sanselan committers and main contributors:
+
+* Charles M. Chen
+** cmchen
+* Philipp Koch
+** pkoch
+* Jeremias Maerki
+** jeremias
+* Craig Russell
+** clr
+* Yoav Shapira
+** yoavs
+* Carsten Ziegeler
+** cziegeler
+* Damjan Jovanovic
+** damjan
+* Iuliana Cosmina
+** iuliana

@@ -59,21 +59,9 @@ public abstract class ExifBaseTest extends SanselanTest
         }
     }
 
-    private static final ImageFilter HAS_EXIF_IMAGE_FILTER = new ImageFilter()
-    {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return hasExifData(file);
-        }
-    };
+    private static final ImageFilter HAS_EXIF_IMAGE_FILTER = ExifBaseTest::hasExifData;
 
-    private static final ImageFilter JPEG_IMAGE_FILTER = new ImageFilter()
-    {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return file.getName().toLowerCase().endsWith(".jpg");
-        }
-    };
+    private static final ImageFilter JPEG_IMAGE_FILTER = file -> file.getName().toLowerCase().endsWith(".jpg");
 
     protected File getImageWithExifData() throws IOException,
             ImageReadException

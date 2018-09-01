@@ -42,7 +42,7 @@ public class Dct
      *
      * Benchmarks, Intel Core i3 @ 2.93 GHz in long mode, 4 GB RAM
      * Time taken to do 100 million IDCTs (less is better):
-     * Rene' Stöckel's Feig, int: 45.07 seconds
+     * Rene' Stockel's Feig, int: 45.07 seconds
      * My Feig, floating point: 36.252 seconds
      * AA&N, unrolled loops, double[][] -> double[][]: 25.167 seconds
      *
