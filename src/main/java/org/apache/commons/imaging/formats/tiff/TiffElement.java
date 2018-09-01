@@ -36,13 +36,7 @@ public abstract class TiffElement
 
     public abstract String getElementDescription(boolean verbose);
 
-    public static final Comparator<TiffElement> COMPARATOR = new Comparator<TiffElement>()
-    {
-        public int compare(TiffElement e1, TiffElement e2)
-        {
-            return e1.offset - e2.offset;
-        }
-    };
+    public static final Comparator<TiffElement> COMPARATOR = Comparator.comparingInt(e -> e.offset);
 
     public static abstract class DataElement extends TiffElement
     {

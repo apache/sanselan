@@ -36,13 +36,7 @@ public abstract class JpegBaseTest extends SanselanTest
         return format == ImageFormat.IMAGE_FORMAT_JPEG;
     }
 
-    public static final ImageFilter imageFilter = new ImageFilter()
-    {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isJpeg(file);
-        }
-    };
+    public static final ImageFilter imageFilter = JpegBaseTest::isJpeg;
 
 
 

@@ -52,21 +52,9 @@ public abstract class IptcBaseTest extends SanselanTest
         }
     }
 
-    private static final ImageFilter HAS_IPTC_IMAGE_FILTER = new ImageFilter()
-    {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return hasIptcData(file);
-        }
-    };
+    private static final ImageFilter HAS_IPTC_IMAGE_FILTER = IptcBaseTest::hasIptcData;
 
-    private static final ImageFilter JPEG_IMAGE_FILTER = new ImageFilter()
-    {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return file.getName().toLowerCase().endsWith(".jpg");
-        }
-    };
+    private static final ImageFilter JPEG_IMAGE_FILTER = file -> file.getName().toLowerCase().endsWith(".jpg");
 
     protected File getImageWithIptcData() throws IOException,
             ImageReadException

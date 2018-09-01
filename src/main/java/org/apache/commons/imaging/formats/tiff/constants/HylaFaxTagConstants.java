@@ -1,12 +1,10 @@
 package org.apache.commons.imaging.formats.tiff.constants;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.apache.commons.imaging.formats.tiff.taginfos.TagInfo;
 import org.apache.commons.imaging.formats.tiff.taginfos.TagInfoAscii;
 import org.apache.commons.imaging.formats.tiff.taginfos.TagInfoLong;
+
+import java.util.List;
 
 public interface HylaFaxTagConstants extends TiffFieldTypeConstants {
     public static final TagInfoLong EXIF_TAG_FAX_RECV_PARAMS = new TagInfoLong(
@@ -26,9 +24,8 @@ public interface HylaFaxTagConstants extends TiffFieldTypeConstants {
             TiffDirectoryType.EXIF_DIRECTORY_UNKNOWN);
 
     public static final List<TagInfo> ALL_HYLAFAX_TAGS =
-            Collections.unmodifiableList(Arrays.asList(
-                EXIF_TAG_FAX_RECV_PARAMS,
-                EXIF_TAG_FAX_SUB_ADDRESS,
-                EXIF_TAG_FAX_RECV_TIME,
-                EXIF_TAG_FAX_DCS));
+            List.of(EXIF_TAG_FAX_RECV_PARAMS,
+                    EXIF_TAG_FAX_SUB_ADDRESS,
+                    EXIF_TAG_FAX_RECV_TIME,
+                    EXIF_TAG_FAX_DCS);
 }

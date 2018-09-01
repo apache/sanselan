@@ -33,11 +33,7 @@ public abstract class RgbeBaseTest extends SanselanTest {
         return format == ImageFormat.IMAGE_FORMAT_RGBE;
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept( File file ) throws IOException, ImageReadException {
-            return isRgbe( file );
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = RgbeBaseTest::isRgbe;
 
     protected List getRgbeImages() throws IOException, ImageReadException {
         return getTestImages( IMAGE_FILTER );

@@ -271,7 +271,7 @@ public class BinaryInputStream extends InputStream implements BinaryConstants
     protected final RationalNumber convertByteArrayToRational(String name,
             byte bytes[], int start, int byteOrder)
     {
-        int numerator = convertByteArrayToInt(name, bytes, start + 0, 4,
+        int numerator = convertByteArrayToInt(name, bytes, start, 4,
                 byteOrder);
         int divisor = convertByteArrayToInt(name, bytes, start + 4, 4,
                 byteOrder);
@@ -288,7 +288,7 @@ public class BinaryInputStream extends InputStream implements BinaryConstants
     protected final int convertByteArrayToInt(String name, byte bytes[],
             int start, int length, int byteOrder)
     {
-        byte byte0 = bytes[start + 0];
+        byte byte0 = bytes[start];
         byte byte1 = bytes[start + 1];
         byte byte2 = bytes[start + 2];
         byte byte3 = 0;
@@ -350,7 +350,7 @@ public class BinaryInputStream extends InputStream implements BinaryConstants
     protected final int convertByteArrayToShort(String name, int start,
             byte bytes[], int byteOrder)
     {
-        byte byte0 = bytes[start + 0];
+        byte byte0 = bytes[start];
         byte byte1 = bytes[start + 1];
 
         // return convert2BytesToShort(name, byte0, byte1, byteOrder);

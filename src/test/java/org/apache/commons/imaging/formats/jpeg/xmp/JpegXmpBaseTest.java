@@ -53,21 +53,7 @@ public abstract class JpegXmpBaseTest extends SanselanTest
         }
     }
 
-    private static final ImageFilter HAS_JPEG_XMP_IMAGE_FILTER = new ImageFilter()
-    {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return hasJpegXmpData(file);
-        }
-    };
-
-//    private static final ImageFilter JPEG_IMAGE_FILTER = new ImageFilter()
-//    {
-//        public boolean accept(File file) throws IOException, ImageReadException
-//        {
-//            return file.getName().toLowerCase().endsWith(".jpg");
-//        }
-//    };
+    private static final ImageFilter HAS_JPEG_XMP_IMAGE_FILTER = file -> hasJpegXmpData(file);
 
     protected File getImageWithXmpData() throws IOException,
             ImageReadException

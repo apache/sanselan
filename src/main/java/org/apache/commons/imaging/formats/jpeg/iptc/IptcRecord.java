@@ -62,11 +62,6 @@ public class IptcRecord
         return iptcType.getName();
     }
 
-    public static final Comparator<IptcRecord> COMPARATOR = new Comparator<IptcRecord>() {
-        public int compare(IptcRecord e1, IptcRecord e2)
-        {
-            return e1.iptcType.getType() - e2.iptcType.getType();
-        }
-    };
+    public static final Comparator<IptcRecord> COMPARATOR = (e1, e2) -> e1.iptcType.getType() - e2.iptcType.getType();
 
 }

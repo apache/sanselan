@@ -102,11 +102,11 @@ public class PngImageParser extends ImageParser implements PngConstants
     // private final static int tRNS = CharsToQuad('t', 'R', 'N', 's');
 
     public static final String getChunkTypeName(int chunkType) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         result.append((char) (0xff & (chunkType >> 24)));
         result.append((char) (0xff & (chunkType >> 16)));
         result.append((char) (0xff & (chunkType >> 8)));
-        result.append((char) (0xff & (chunkType >> 0)));
+        result.append((char) (0xff & chunkType));
         return result.toString();
     }
 

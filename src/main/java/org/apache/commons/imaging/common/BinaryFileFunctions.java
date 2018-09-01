@@ -256,7 +256,7 @@ public class BinaryFileFunctions implements BinaryConstants
     protected final RationalNumber convertByteArrayToRational(String name,
             byte bytes[], int start, int byteOrder)
     {
-        int numerator = convertByteArrayToInt(name, bytes, start + 0, byteOrder);
+        int numerator = convertByteArrayToInt(name, bytes, start, byteOrder);
         int divisor = convertByteArrayToInt(name, bytes, start + 4, byteOrder);
 
         return new RationalNumber(numerator, divisor);
@@ -271,7 +271,7 @@ public class BinaryFileFunctions implements BinaryConstants
     protected final int convertByteArrayToInt(String name, byte bytes[],
             int start, int byteOrder)
     {
-        byte byte0 = bytes[start + 0];
+        byte byte0 = bytes[start];
         byte byte1 = bytes[start + 1];
         byte byte2 = bytes[start + 2];
         byte byte3 = bytes[start + 3];
@@ -323,25 +323,25 @@ public class BinaryFileFunctions implements BinaryConstants
     {
         if (byteOrder == BYTE_ORDER_MOTOROLA) // motorola, big endian
         {
-            bytes[start + 0] = (byte) (value >> 24);
+            bytes[start] = (byte) (value >> 24);
             bytes[start + 1] = (byte) (value >> 16);
             bytes[start + 2] = (byte) (value >> 8);
-            bytes[start + 3] = (byte) (value >> 0);
+            bytes[start + 3] = (byte) value;
         } else
         {
             bytes[start + 3] = (byte) (value >> 24);
             bytes[start + 2] = (byte) (value >> 16);
             bytes[start + 1] = (byte) (value >> 8);
-            bytes[start + 0] = (byte) (value >> 0);
+            bytes[start] = (byte) value;
         }
     }
 
     protected static final byte[] int2ToByteArray(int value, int byteOrder)
     {
         if (byteOrder == BYTE_ORDER_MOTOROLA) // motorola, big endian
-            return new byte[] { (byte) (value >> 8), (byte) (value >> 0), };
+            return new byte[] { (byte) (value >> 8), (byte) value, };
         else
-            return new byte[] { (byte) (value >> 0), (byte) (value >> 8), };
+            return new byte[] { (byte) value, (byte) (value >> 8), };
     }
 
     protected final byte[] convertIntArrayToByteArray(int values[],
@@ -368,12 +368,12 @@ public class BinaryFileFunctions implements BinaryConstants
 
             if (byteOrder == BYTE_ORDER_MOTOROLA) // motorola, big endian
             {
-                result[i * 2 + 0] = (byte) (value >> 8);
-                result[i * 2 + 1] = (byte) (value >> 0);
+                result[i * 2] = (byte) (value >> 8);
+                result[i * 2 + 1] = (byte) value;
             } else
             {
                 result[i * 2 + 1] = (byte) (value >> 8);
-                result[i * 2 + 0] = (byte) (value >> 0);
+                result[i * 2] = (byte) value;
             }
         }
 
@@ -387,11 +387,11 @@ public class BinaryFileFunctions implements BinaryConstants
         if (byteOrder == BYTE_ORDER_MOTOROLA) // motorola, big endian
         {
             result[0] = (byte) (value >> 8);
-            result[1] = (byte) (value >> 0);
+            result[1] = (byte) value;
         } else
         {
             result[1] = (byte) (value >> 8);
-            result[0] = (byte) (value >> 0);
+            result[0] = (byte) value;
         }
 
         return result;
@@ -457,7 +457,7 @@ public class BinaryFileFunctions implements BinaryConstants
             throw new ImageReadException("Index out of bounds. Array size: "
                     + bytes.length + ", index: " + index);
 
-        int byte0 = 0xff & bytes[index + 0];
+        int byte0 = 0xff & bytes[index];
         int byte1 = 0xff & bytes[index + 1];
 
         int result;
@@ -820,7 +820,7 @@ public class BinaryFileFunctions implements BinaryConstants
     {
         // TODO: not tested; probably wrong.
 
-        byte byte0 = bytes[start + 0];
+        byte byte0 = bytes[start];
         byte byte1 = bytes[start + 1];
         byte byte2 = bytes[start + 2];
         byte byte3 = bytes[start + 3];
@@ -904,7 +904,7 @@ public class BinaryFileFunctions implements BinaryConstants
             int start = i * 4;
             if (byteOrder == BYTE_ORDER_INTEL) // intel, little endian
             {
-                result[start + 0] = (byte) (0xff & (bits >> 0));
+                result[start] = (byte) (0xff & (bits >> 0));
                 result[start + 1] = (byte) (0xff & (bits >> 8));
                 result[start + 2] = (byte) (0xff & (bits >> 16));
                 result[start + 3] = (byte) (0xff & (bits >> 24));
@@ -913,7 +913,7 @@ public class BinaryFileFunctions implements BinaryConstants
                 result[start + 3] = (byte) (0xff & (bits >> 0));
                 result[start + 2] = (byte) (0xff & (bits >> 8));
                 result[start + 1] = (byte) (0xff & (bits >> 16));
-                result[start + 0] = (byte) (0xff & (bits >> 24));
+                result[start] = (byte) (0xff & (bits >> 24));
             }
         }
         return result;
@@ -962,7 +962,7 @@ public class BinaryFileFunctions implements BinaryConstants
             int start = i * 8;
             if (byteOrder == BYTE_ORDER_INTEL) // intel, little endian
             {
-                result[start + 0] = (byte) (0xff & (bits >> 0));
+                result[start] = (byte) (0xff & (bits >> 0));
                 result[start + 1] = (byte) (0xff & (bits >> 8));
                 result[start + 2] = (byte) (0xff & (bits >> 16));
                 result[start + 3] = (byte) (0xff & (bits >> 24));
@@ -979,7 +979,7 @@ public class BinaryFileFunctions implements BinaryConstants
                 result[start + 3] = (byte) (0xff & (bits >> 32));
                 result[start + 2] = (byte) (0xff & (bits >> 40));
                 result[start + 1] = (byte) (0xff & (bits >> 48));
-                result[start + 0] = (byte) (0xff & (bits >> 56));
+                result[start] = (byte) (0xff & (bits >> 56));
             }
         }
         return result;
@@ -994,7 +994,7 @@ public class BinaryFileFunctions implements BinaryConstants
     protected final double convertByteArrayToDouble(String name, byte bytes[],
             int start, int byteOrder)
     {
-        byte byte0 = bytes[start + 0];
+        byte byte0 = bytes[start];
         byte byte1 = bytes[start + 1];
         byte byte2 = bytes[start + 2];
         byte byte3 = bytes[start + 3];
@@ -1032,7 +1032,7 @@ public class BinaryFileFunctions implements BinaryConstants
         // if (byteOrder == BYTE_ORDER_MOTOROLA) // motorola, big endian
         // // ?? dunno byte order very likely wrong here.
         // array = new byte[]{
-        // bytes[start + 0], bytes[start + 1], bytes[start + 2],
+        // bytes[start], bytes[start + 1], bytes[start + 2],
         // bytes[start + 3], bytes[start + 4], bytes[start + 5],
         // bytes[start + 6], bytes[start + 7],
         //
@@ -1041,7 +1041,7 @@ public class BinaryFileFunctions implements BinaryConstants
         // // ?? dunno byte order very likely wrong here.
         // array = new byte[]{
         // bytes[start + 3], bytes[start + 2], bytes[start + 1],
-        // bytes[start + 0], bytes[start + 7], bytes[start + 6],
+        // bytes[start], bytes[start + 7], bytes[start + 6],
         // bytes[start + 5], bytes[start + 4],
         // };
         //

@@ -88,7 +88,7 @@ public final class Debug
 
     public static String getDebug(String message, int v[])
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         if (v == null)
             result.append(message + " (" + null + ")" + newline);
@@ -111,7 +111,7 @@ public final class Debug
     public static String getDebug(String message, byte v[], int max)
     {
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         if (v == null)
             result.append(message + " (" + null + ")" + newline);
@@ -141,7 +141,7 @@ public final class Debug
 
     public static String getDebug(String message, char v[])
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         if (v == null)
             result.append(getDebug(message + " (" + null + ")") + newline);
@@ -160,7 +160,7 @@ public final class Debug
 
     public static String getDebug(String message, java.util.List<?> v)
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         String suffix = " [" + counter++ + "]";
 
@@ -181,7 +181,7 @@ public final class Debug
 
     public static String getDebug(String message, Map map)
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         if (map == null)
             return getDebug(message + " map: " + null);
@@ -210,7 +210,7 @@ public final class Debug
     //    public static String newline = System.getProperty("line.separator");
     public static final String newline = "\r\n";
 
-    private static void log(StringBuffer buffer, String s)
+    private static void log(StringBuilder buffer, String s)
     {
         Debug.debug(s);
         if (buffer != null)
@@ -218,7 +218,7 @@ public final class Debug
     }
 
     public static boolean compare(String prefix, Map a, Map b,
-            List ignore, StringBuffer buffer)
+            List ignore, StringBuilder buffer)
     {
         if ((a == null) && (b == null))
         {
@@ -294,23 +294,23 @@ public final class Debug
         char c3 = (char) b3;
         char c4 = (char) b4;
         //        return new String(new char[] { c1, c2, c3, c4 });
-        StringBuffer fStringBuffer = new StringBuffer();
-        fStringBuffer.append(new String(new char[]{
+        StringBuilder fStringBuilder = new StringBuilder();
+        fStringBuilder.append(new String(new char[]{
                 c1, c2, c3, c4
         }));
-        fStringBuffer.append(" bytequad: " + bytequad);
-        fStringBuffer.append(" b1: " + b1);
-        fStringBuffer.append(" b2: " + b2);
-        fStringBuffer.append(" b3: " + b3);
-        fStringBuffer.append(" b4: " + b4);
+        fStringBuilder.append(" bytequad: " + bytequad);
+        fStringBuilder.append(" b1: " + b1);
+        fStringBuilder.append(" b2: " + b2);
+        fStringBuilder.append(" b3: " + b3);
+        fStringBuilder.append(" b4: " + b4);
 
-        return fStringBuffer.toString();
+        return fStringBuilder.toString();
     }
 
     public static String getDebug(String message, ICC_Profile value)
     {
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         result.append(getDebug("ICC_Profile " + message + ": "
                 + ((value == null) ? "null" : value.toString()))
@@ -488,7 +488,7 @@ public final class Debug
 
     public static String getDebug(String message, Object value[])
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         if (value == null) {
             result.append(getDebug(message, "null") + newline);
@@ -657,7 +657,7 @@ public final class Debug
 
     public static String getDebug(Throwable e, int max)
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         final SimpleDateFormat timestamp = new SimpleDateFormat(
                 "yyyy-MM-dd kk:mm:ss:SSS");
@@ -692,7 +692,7 @@ public final class Debug
 
     public static String getStackTrace(Throwable e, int limit, int skip)
     {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         if (e != null)
         {
@@ -723,7 +723,7 @@ public final class Debug
         int alpha = (i >> 24) & 0xff;
         int red = (i >> 16) & 0xff;
         int green = (i >> 8) & 0xff;
-        int blue = (i >> 0) & 0xff;
+        int blue = i & 0xff;
 
         System.out.println(message + ": " + "alpha: " + alpha + ", " + "red: "
                 + red + ", " + "green: " + green + ", " + "blue: " + blue);
@@ -734,7 +734,7 @@ public final class Debug
         int b1 = (i >> 24) & 0xff;
         int b2 = (i >> 16) & 0xff;
         int b3 = (i >> 8) & 0xff;
-        int b4 = (i >> 0) & 0xff;
+        int b4 = i & 0xff;
 
         System.out.println(message + ": " + "b1: " + b1 + ", " + "b2: " + b2
                 + ", " + "b3: " + b3 + ", " + "b4: " + b4);

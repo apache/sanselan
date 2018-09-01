@@ -17,18 +17,14 @@
 
 package org.apache.commons.imaging;
 
+import junit.framework.TestCase;
+import org.apache.commons.imaging.test.util.FileSystemTraversal;
+import org.apache.commons.imaging.util.Debug;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.TestCase;
-
-import org.apache.commons.imaging.ImageReadException;
-import org.apache.commons.imaging.Sanselan;
-import org.apache.commons.imaging.SanselanConstants;
-import org.apache.commons.imaging.test.util.FileSystemTraversal;
-import org.apache.commons.imaging.util.Debug;
 
 public abstract class SanselanTest extends TestCase implements
         SanselanTestConstants, SanselanConstants {
@@ -80,11 +76,7 @@ public abstract class SanselanTest extends TestCase implements
 
     protected File getTestImageByName(final String filename)
             throws IOException, ImageReadException {
-        return getTestImage(new ImageFilter() {
-            public boolean accept(File file) throws IOException, ImageReadException {
-                return file.getName().equals(filename);
-            }
-        });
+        return getTestImage(file -> file.getName().equals(filename));
     }
 
     protected File getTestImage(ImageFilter filter) throws IOException,
@@ -118,14 +110,11 @@ public abstract class SanselanTest extends TestCase implements
         Debug.debug("imagesFolder", imagesFolder);
         assertTrue(imagesFolder.exists());
 
-        FileSystemTraversal.Visitor visitor = new FileSystemTraversal.Visitor() {
-
-            public boolean visit(File file, double progressEstimate) {
-                if (!Sanselan.hasImageFileExtension(file))
-                    return true;
-                ALL_IMAGES.add(file);
+        FileSystemTraversal.Visitor visitor = (file, progressEstimate) -> {
+            if (!Sanselan.hasImageFileExtension(file))
                 return true;
-            }
+            ALL_IMAGES.add(file);
+            return true;
         };
         new FileSystemTraversal().traverseFiles(imagesFolder, visitor);
     }

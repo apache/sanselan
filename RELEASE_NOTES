@@ -12,6 +12,12 @@ http://commons.apache.org/sanselan/
 Version History:
 ----------------
 
+Release 1.0-SNAPSHOT
+------------
+* Build with
+** Gradle 5.0-20180826235923+0000
+** JVM:          11 (Oracle Corporation 11+28)
+
 Release 0.98
 ------------
  * SANSELAN-44 - JpegImageMetadata getEXIFThumbnail may raise a null pointer exception

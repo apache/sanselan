@@ -33,12 +33,7 @@ public abstract class IcoBaseTest extends SanselanTest
             file.getName().toLowerCase().endsWith(".cur");
     }
 
-    private static final ImageFilter IMAGE_FILTER = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isIco(file);
-        }
-    };
+    private static final ImageFilter IMAGE_FILTER = IcoBaseTest::isIco;
 
     protected List getIcoImages() throws IOException, ImageReadException
     {

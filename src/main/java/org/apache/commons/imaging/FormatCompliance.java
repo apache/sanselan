@@ -150,7 +150,7 @@ public class FormatCompliance
             if (actual == valid[i])
                 return true;
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         result.append(name + ": " + "Unexpected value: (valid: ");
         if (valid.length > 1)
             result.append("{");

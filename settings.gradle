@@ -15,32 +15,6 @@
  * limitations under the License.
  */
 
-package org.apache.commons.imaging.formats.tiff;
+rootProject.name = 'commons-sanselan'
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.commons.imaging.ImageFormat;
-import org.apache.commons.imaging.ImageReadException;
-import org.apache.commons.imaging.Sanselan;
-import org.apache.commons.imaging.SanselanTest;
-
-public abstract class TiffBaseTest extends SanselanTest
-{
-
-    private static boolean isTiff(File file) throws IOException,
-            ImageReadException
-    {
-        ImageFormat format = Sanselan.guessFormat(file);
-        return format == ImageFormat.IMAGE_FORMAT_TIFF;
-    }
-
-    private static final ImageFilter imageFilter = TiffBaseTest::isTiff;
-
-    protected List getTiffImages() throws IOException, ImageReadException
-    {
-        return getTestImages(imageFilter);
-    }
-
-}
+println('Commons Sanselan version compiled with JDK 11, by Iuliana Cosmina [https://github.com/iuliana]')

@@ -148,7 +148,7 @@ public class DcxImageParser extends ImageParser
         {
             is = byteSource.getInputStream();
             int id = read4Bytes("Id", is, "Not a Valid DCX File");
-            List<Integer> pageTable = new ArrayList<Integer>(1024);
+            List<Integer> pageTable = new ArrayList<>(1024);
             for (int i = 0; i < 1024; i++)
             {
                 int pageOffset = read4Bytes("PageTable", is, "Not a Valid DCX File");
@@ -207,7 +207,7 @@ public class DcxImageParser extends ImageParser
             throws ImageReadException, IOException
     {
         DcxHeader dcxHeader = readDcxHeader(byteSource);
-        List<BufferedImage> images = new ArrayList<BufferedImage>();
+        List<BufferedImage> images = new ArrayList<>();
         PcxImageParser pcxImageParser = new PcxImageParser();
         for (int i = 0; i < dcxHeader.pageTable.length; i++)
         {

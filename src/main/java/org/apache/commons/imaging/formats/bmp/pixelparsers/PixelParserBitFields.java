@@ -79,7 +79,7 @@ public class PixelParserBitFields extends PixelParserSimple
 
         if (bhi.bitsPerPixel == 8)
         {
-            data = 0xff & imageData[bytecount + 0];
+            data = 0xff & imageData[bytecount];
             bytecount += 1;
         }
         else if (bhi.bitsPerPixel == 24)

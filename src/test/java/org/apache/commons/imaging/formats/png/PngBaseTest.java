@@ -29,19 +29,12 @@ import org.apache.commons.imaging.SanselanTest;
 public abstract class PngBaseTest extends SanselanTest
 {
 
-    private static boolean isPng(File file) throws IOException,
-            ImageReadException
-    {
+    private static boolean isPng(File file) throws IOException, ImageReadException {
         ImageFormat format = Sanselan.guessFormat(file);
         return format == ImageFormat.IMAGE_FORMAT_PNG;
     }
 
-    private static final ImageFilter imageFilter = new ImageFilter() {
-        public boolean accept(File file) throws IOException, ImageReadException
-        {
-            return isPng(file);
-        }
-    };
+    private static final ImageFilter imageFilter = PngBaseTest::isPng;
 
     protected List getPngImages() throws IOException, ImageReadException
     {
