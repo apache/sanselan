@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class MyByteArrayOutputStream extends OutputStream
-// some performace benefit, because not thread safe.
+// some performance benefit, because not thread safe.
 {
     private final byte bytes[];
 
